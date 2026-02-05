@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  justify-content: end;
+  max-height: 72px;
+  height: 100%;
+}
+
+.header_list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.header_list li {
+  cursor: pointer;
+}
+
+.user {
+  width: 40px;
+}
