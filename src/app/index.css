@@ -111,8 +111,6 @@ input[type="file"] {
 }
 
 body {
-  padding: 20px;
-  box-sizing: border-box;
-  border-bottom: 1px solid var(--Black/50, rgba(232, 232, 232, 1));
-  background: var(--BG, rgba(248, 248, 248, 1));
+  background: rgba(244, 244, 244, 1);
+  font-family: "Manrope", sans-serif;
 }
