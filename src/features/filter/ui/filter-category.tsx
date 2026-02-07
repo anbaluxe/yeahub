@@ -1,11 +1,11 @@
 import { useSkillsFetch } from "@/features/filter/api/useSkillsFetch";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useToggleFilter } from "../lib/useToggleFilters";
 import type { SkillItem } from "../model/types";
 import { FilterButton } from "./filter-button";
 import styles from "./style.module.css";
 
-export const FilterCategory = () => {
+const FilterCategory = () => {
   const [all, setAll] = useState(false);
   const { data } = useSkillsFetch<SkillItem>({ limit: all ? 14 : 5 });
   const { filters, toggleFilter } = useToggleFilter();
@@ -30,7 +30,7 @@ export const FilterCategory = () => {
         className={styles.link}
         onClick={() => {
           setAll(!all);
-          toggleFilter("question", 6);
+          toggleFilter("question", data[0].id);
         }}
       >
         {/* TODO: Отслеживать isLoading состояние при подгрузке данных, чтобы
@@ -40,3 +40,5 @@ export const FilterCategory = () => {
     </div>
   );
 };
+
+export default memo(FilterCategory);

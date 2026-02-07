@@ -1,14 +1,15 @@
+import { memo } from "react";
 import { useToggleFilter } from "../lib/useToggleFilters";
 import { FilterButton } from "./filter-button";
 import styles from "./style.module.css";
+const data = [
+  { id: 1, title: "Изученные" },
+  { id: 2, title: "Не изученные" },
+  { id: 3, title: "Все" },
+  { id: 4, title: "Только избранные" },
+];
 
-export const FilterStatus = () => {
-  const data = [
-    { id: 1, title: "Изученные" },
-    { id: 2, title: "Не изученные" },
-    { id: 3, title: "Все" },
-    { id: 4, title: "Только избранные" },
-  ];
+const FilterStatus = () => {
   const { filters, toggleFilter } = useToggleFilter();
   return (
     <div>
@@ -30,3 +31,5 @@ export const FilterStatus = () => {
     </div>
   );
 };
+
+export default memo(FilterStatus);

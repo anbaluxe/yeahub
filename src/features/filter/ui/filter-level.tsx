@@ -1,14 +1,15 @@
+import { memo } from "react";
 import { useToggleFilter } from "../lib/useToggleFilters";
 import { FilterButton } from "./filter-button";
 import styles from "./style.module.css";
+const data = [
+  { id: 1, title: "1-3" },
+  { id: 2, title: "4-6" },
+  { id: 3, title: "7-8" },
+  { id: 4, title: "9-10" },
+];
 
-export const FilterLevel = () => {
-  const data = [
-    { id: 1, title: "1-3" },
-    { id: 2, title: "4-6" },
-    { id: 3, title: "7-8" },
-    { id: 4, title: "9-10" },
-  ];
+const FilterLevel = () => {
   const { filters, toggleFilter } = useToggleFilter();
   return (
     <div>
@@ -30,3 +31,5 @@ export const FilterLevel = () => {
     </div>
   );
 };
+
+export default memo(FilterLevel);

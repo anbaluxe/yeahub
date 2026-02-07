@@ -1,3 +1,6 @@
+/* highlight.js theme */
+@import "highlight.js/styles/github-dark.css";
+
 /* Reset and base styles  */
 * {
   padding: 0px;
