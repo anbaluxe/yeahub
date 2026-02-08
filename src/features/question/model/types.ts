@@ -4,4 +4,5 @@ export type QuestionItemType = {
   rate: number;
   complexity: number;
   shortAnswer: string;
+  total: number;
 };
