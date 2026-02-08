@@ -10,7 +10,7 @@ const data = [
 ];
 
 const FilterLevel = () => {
-  const { filters, toggleFilter } = useToggleFilter();
+  const { filters, setFilter } = useToggleFilter();
   return (
     <div>
       <h5 className={styles.title}>Уровень сложности</h5>
@@ -21,7 +21,7 @@ const FilterLevel = () => {
             <li
               key={level.id}
               className={active}
-              onClick={() => toggleFilter("level", level.title)}
+              onClick={() => setFilter("level", level.title)}
             >
               <FilterButton>{level.title}</FilterButton>
             </li>

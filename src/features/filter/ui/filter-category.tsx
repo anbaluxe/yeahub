@@ -8,7 +8,7 @@ import styles from "./style.module.css";
 const FilterCategory = () => {
   const [all, setAll] = useState(false);
   const { data } = useSkillsFetch<SkillItem>({ limit: all ? 14 : 5 });
-  const { filters, toggleFilter } = useToggleFilter();
+  const { filters, setFilter } = useToggleFilter();
   return (
     <div>
       <h5 className={styles.title}>Категории вопросов</h5>
@@ -19,7 +19,7 @@ const FilterCategory = () => {
             <li
               key={skill.id}
               className={active}
-              onClick={() => toggleFilter("question", skill.id)}
+              onClick={() => setFilter("question", skill.id)}
             >
               <FilterButton>{skill.title}</FilterButton>
             </li>
@@ -30,7 +30,7 @@ const FilterCategory = () => {
         className={styles.link}
         onClick={() => {
           setAll(!all);
-          toggleFilter("question", data[0].id);
+          if (data.length > 0) setFilter("question", data[0].id);
         }}
       >
         {/* TODO: Отслеживать isLoading состояние при подгрузке данных, чтобы

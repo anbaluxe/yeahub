@@ -3,14 +3,14 @@ import { useToggleFilter } from "../lib/useToggleFilters";
 import { FilterButton } from "./filter-button";
 import styles from "./style.module.css";
 const data = [
-  { id: 1, title: "Изученные" },
-  { id: 2, title: "Не изученные" },
-  { id: 3, title: "Все" },
-  { id: 4, title: "Только избранные" },
+  { id: 1, title: "Изученные", status: null },
+  { id: 2, title: "Не изученные", status: null },
+  { id: 3, title: "Все", status: "Все" },
+  { id: 4, title: "Только избранные", status: null },
 ];
 
 const FilterStatus = () => {
-  const { filters, toggleFilter } = useToggleFilter();
+  const { filters, setFilter } = useToggleFilter();
   return (
     <div>
       <h5 className={styles.title}>Статус</h5>
@@ -21,7 +21,7 @@ const FilterStatus = () => {
             <li
               key={status.id}
               className={active}
-              onClick={() => toggleFilter("status", status.title)}
+              onClick={() => setFilter("status", status.status)}
             >
               <FilterButton>{status.title}</FilterButton>
             </li>

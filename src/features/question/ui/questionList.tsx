@@ -1,5 +1,6 @@
+import { useFilterStore } from "@/features/filter";
 import { useQuestionFetch } from "@/shared/api/useQuestionFetch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { QuestionItemType } from "../model/types";
 import { Pagination } from "./pagination";
 import { QuestionItem } from "./questionItem";
@@ -9,10 +10,22 @@ const limit = 10;
 
 export const QuestionList = () => {
   const [activePage, setActivePage] = useState(1);
+  const filters = useFilterStore((s) => s.filters);
+  const resetFilters = useFilterStore((s) => s.resetFilters);
+  useEffect(() => setActivePage(1), [filters]);
   const { data, total } = useQuestionFetch<QuestionItemType>({
-    limit: limit,
+    limit,
     page: activePage,
+    filters,
   });
+  if (data.length === 0) {
+    return (
+      <div className={styles.questionList}>
+        <h3>К сожалению по запросу ничего не найдено</h3>
+        <button onClick={resetFilters}>Сбросить фильтры</button>
+      </div>
+    );
+  }
   return (
     <div className={styles.questionList}>
       {data.map((question) => (

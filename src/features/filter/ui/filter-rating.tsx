@@ -11,7 +11,7 @@ const data = [
 ];
 
 const FilterRating = () => {
-  const { filters, toggleFilter } = useToggleFilter();
+  const { filters, setFilter } = useToggleFilter();
   return (
     <div>
       <h5 className={styles.title}>Рейтинг</h5>
@@ -22,7 +22,7 @@ const FilterRating = () => {
             <li
               key={rating.id}
               className={active}
-              onClick={() => toggleFilter("rating", rating.title)}
+              onClick={() => setFilter("rating", rating.title)}
             >
               <FilterButton>{rating.title}</FilterButton>
             </li>
