@@ -10,18 +10,20 @@ const data = [
 ];
 
 const FilterStatus = () => {
-  const { filters, toggleFilter } = useToggleFilter();
+  const { filters, setFilter } = useToggleFilter();
   return (
     <div>
       <h5 className={styles.title}>Статус</h5>
       <ul className={styles.skills}>
         {data.map((status) => {
-          const active = status.title === filters.status ? styles.active : "";
+          const active = filters.status.includes(status.title)
+            ? styles.active
+            : "";
           return (
             <li
               key={status.id}
               className={active}
-              onClick={() => toggleFilter("status", status.title)}
+              onClick={() => setFilter("status", status.title)}
             >
               <FilterButton>{status.title}</FilterButton>
             </li>

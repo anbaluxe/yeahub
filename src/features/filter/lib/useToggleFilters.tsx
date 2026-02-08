@@ -1,16 +1,9 @@
-import { useState } from "react";
+import { useFilterStore } from "../model/filterStore";
 
 export const useToggleFilter = () => {
-  const [filters, setFilters] = useState({
-    question: 6,
-    level: "1-3",
-    rating: "",
-    status: "Все",
-  });
+  const filters = useFilterStore((state) => state.filters);
+  const setFilter = useFilterStore((state) => state.toggleFilterValue);
+  const setSearch = useFilterStore((state) => state.setSearch);
 
-  const toggleFilter = (type: string, value: string | number) => {
-    setFilters((prev) => ({ ...prev, [type]: value }));
-  };
-
-  return { filters, toggleFilter };
+  return { filters, setFilter, setSearch };
 };

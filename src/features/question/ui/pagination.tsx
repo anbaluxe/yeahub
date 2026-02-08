@@ -44,11 +44,13 @@ export const Pagination = ({ total, activePage, onClick, limit }: Props) => {
           />
         ))}
         {totalPages <= 6 ? null : <p>...</p>}
-        <ButtonNumber
-          page={totalPages}
-          onClick={onClick}
-          activeItem={activePage}
-        />
+        {totalPages <= 6 ? null : (
+          <ButtonNumber
+            page={totalPages}
+            onClick={onClick}
+            activeItem={activePage}
+          />
+        )}
       </>
     );
   }
@@ -108,7 +110,7 @@ const ButtonNumber = ({ onClick, activeItem, page }: ButtonProps) => {
   return (
     <button
       onClick={() => onClick(page)}
-      className={`${activeItem === page ? styles.active : ""}`}
+      className={`${activeItem === page ? styles.activeNum : ""}`}
     >
       {page}
     </button>

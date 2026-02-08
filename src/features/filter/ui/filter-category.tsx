@@ -8,18 +8,21 @@ import styles from "./style.module.css";
 const FilterCategory = () => {
   const [all, setAll] = useState(false);
   const { data } = useSkillsFetch<SkillItem>({ limit: all ? 14 : 5 });
-  const { filters, toggleFilter } = useToggleFilter();
+  const { filters, setFilter } = useToggleFilter();
   return (
     <div>
       <h5 className={styles.title}>Категории вопросов</h5>
+      {/* TODO: Если скрыть все, то активными выводятся сначала массив из data.question */}
       <ul className={styles.skills}>
         {data.map((skill) => {
-          const active = skill.id === filters.question ? styles.active : "";
+          const active = filters.question.includes(skill.id)
+            ? styles.active
+            : "";
           return (
             <li
               key={skill.id}
               className={active}
-              onClick={() => toggleFilter("question", skill.id)}
+              onClick={() => setFilter("question", skill.id)}
             >
               <FilterButton>{skill.title}</FilterButton>
             </li>
@@ -30,7 +33,6 @@ const FilterCategory = () => {
         className={styles.link}
         onClick={() => {
           setAll(!all);
-          toggleFilter("question", data[0].id);
         }}
       >
         {/* TODO: Отслеживать isLoading состояние при подгрузке данных, чтобы
