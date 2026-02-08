@@ -16,7 +16,9 @@ const FilterLevel = () => {
       <h5 className={styles.title}>Уровень сложности</h5>
       <ul className={styles.skills}>
         {data.map((level) => {
-          const active = level.title === filters.level ? styles.active : "";
+          const active = filters.level.includes(level.title)
+            ? styles.active
+            : "";
           return (
             <li
               key={level.id}

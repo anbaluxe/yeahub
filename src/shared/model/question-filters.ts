@@ -1,7 +1,7 @@
 export type QuestionFilters = {
-  question: number | null;
-  level: string | null;
-  rating: string | null;
-  status: string | null;
+  question: number[];
+  level: string[];
+  rating: string[];
+  status: string[];
   search: string;
 };

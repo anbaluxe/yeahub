@@ -17,7 +17,9 @@ const FilterRating = () => {
       <h5 className={styles.title}>Рейтинг</h5>
       <ul className={styles.skills}>
         {data.map((rating) => {
-          const active = rating.title === filters.rating ? styles.active : "";
+          const active = filters.rating.includes(rating.title)
+            ? styles.active
+            : "";
           return (
             <li
               key={rating.id}

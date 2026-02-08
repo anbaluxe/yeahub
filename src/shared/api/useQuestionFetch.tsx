@@ -40,19 +40,23 @@ export const useQuestionFetch = <T,>({
         params.set("limit", String(limit));
         params.set("specializationId", specializationId);
 
-        if (filters?.question !== null && filters?.question !== undefined) {
-          params.set("skills", String(filters.question));
+        if (
+          filters?.question !== null &&
+          filters?.question !== undefined &&
+          filters?.question.length
+        ) {
+          params.set("skills", filters.question.join(","));
         }
 
-        if (filters?.level) {
-          const levels = expandLevelRange(filters.level);
+        if (filters?.level && filters?.level.length) {
+          const levels = filters.level.flatMap(expandLevelRange);
           if (levels.length > 0) {
             params.set("complexity", levels.join(","));
           }
         }
 
-        if (filters?.rating) {
-          params.set("rate", filters.rating);
+        if (filters?.rating && filters?.rating.length) {
+          params.set("rate", filters.rating.join(","));
         }
 
         const search = filters?.search?.trim();

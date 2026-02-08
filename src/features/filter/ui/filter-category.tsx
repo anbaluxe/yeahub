@@ -12,9 +12,12 @@ const FilterCategory = () => {
   return (
     <div>
       <h5 className={styles.title}>Категории вопросов</h5>
+      {/* TODO: Если скрыть все, то активными выводятся сначала массив из data.question */}
       <ul className={styles.skills}>
         {data.map((skill) => {
-          const active = skill.id === filters.question ? styles.active : "";
+          const active = filters.question.includes(skill.id)
+            ? styles.active
+            : "";
           return (
             <li
               key={skill.id}
@@ -30,7 +33,6 @@ const FilterCategory = () => {
         className={styles.link}
         onClick={() => {
           setAll(!all);
-          if (data.length > 0) setFilter("question", data[0].id);
         }}
       >
         {/* TODO: Отслеживать isLoading состояние при подгрузке данных, чтобы
