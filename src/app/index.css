@@ -117,3 +117,11 @@ body {
   background: rgba(244, 244, 244, 1);
   font-family: "Manrope", sans-serif;
 }
+
+.content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 70px;
+}

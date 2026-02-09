@@ -1,0 +1,83 @@
+.buttonSideBar {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 9.25px;
+  font-size: 16px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+.buttonMain {
+  background: rgba(255, 255, 255, 1);
+}
+
+.buttonSideBar:hover {
+  color: rgba(106, 11, 255, 1);
+  background: rgba(248, 248, 248, 1);
+}
+
+.imgButton {
+  color: rgba(106, 11, 255, 1);
+}
+
+.sideBar {
+  width: 280px;
+  max-width: 280px;
+  min-width: 280px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow: hidden;
+
+  transition:
+    width 0.28s ease,
+    min-width 0.28s ease,
+    max-width 0.28s ease;
+}
+
+.open {
+  width: 280px;
+  min-width: 280px;
+  max-width: 280px;
+}
+
+.closed {
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+}
+
+.closed::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: rgba(106, 11, 255, 0.3);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sideBarHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 19px 20px;
+  border-bottom: 1px solid rgba(244, 244, 244, 1);
+}
+
+.hero {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
