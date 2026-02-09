@@ -11,13 +11,13 @@ export const SideBar = () => {
     <div className={`${styles.sideBar} ${open ? styles.open : styles.closed}`}>
       <div className={styles.sideBarHeader}>
         <div className={styles.logo}>
-          <button onClick={() => setOpen(!open)}>
+          <button onClick={() => setOpen((prev) => !prev)}>
             <img src={logo} alt="logo" />
           </button>
           {open && <h2>Yeahub</h2>}
         </div>
         {open && (
-          <button onClick={() => setOpen(!open)}>
+          <button onClick={() => setOpen((prev) => !prev)}>
             <img src={activeSlider} alt="close" />
           </button>
         )}

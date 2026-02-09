@@ -1,13 +1,11 @@
 import type { QuestionFilters } from "@/shared/model/question-filters";
 import { create } from "zustand";
-import type { QuestionFilterKey } from "./types";
+
+type FilterKey = "question" | "level" | "rating" | "status";
 
 type FilterStore = {
   filters: QuestionFilters;
-  toggleFilterValue: <K extends QuestionFilterKey>(
-    key: K,
-    value: string | number,
-  ) => void;
+  toggleFilterValue: (key: FilterKey, value: string | number) => void;
   setSearch: (value: string) => void;
   resetFilters: () => void;
 };

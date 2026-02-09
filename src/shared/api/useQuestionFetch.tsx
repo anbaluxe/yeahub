@@ -30,6 +30,7 @@ export const useQuestionFetch = <T,>({
   };
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchData = async () => {
       setIsLoading(true);
       setError(null);
@@ -40,11 +41,7 @@ export const useQuestionFetch = <T,>({
         params.set("limit", String(limit));
         params.set("specializationId", specializationId);
 
-        if (
-          filters?.question !== null &&
-          filters?.question !== undefined &&
-          filters?.question.length
-        ) {
+        if (filters?.question.length) {
           params.set("skills", filters.question.join(","));
         }
 
@@ -66,10 +63,14 @@ export const useQuestionFetch = <T,>({
 
         const res = await axios.get(
           `${CONFIG.API_BASE_URL}questions/public-questions?${params.toString()}`,
+          {
+            signal: controller.signal,
+          },
         );
         setData(res.data.data ?? []);
         setTotal(res.data.total ?? 0);
       } catch (error) {
+        if (axios.isCancel(error)) return;
         if (error)
           setError(error instanceof Error ? error.message : "Ошибка запроса");
         setData([]);
@@ -79,6 +80,7 @@ export const useQuestionFetch = <T,>({
       }
     };
     fetchData();
+    return () => controller.abort();
   }, [page, limit, filters]);
   return { data, total, isLoading, error };
 };
